@@ -6,11 +6,11 @@ import socket
 import sys
 import time
 
-ESP_IP   = "192.168.100.169"
+ESP_IP   = "192.168.4.1"
 ESP_PORT = 22222
 
 ROWS_PER_PACKET = 2            # montako kuvansiivua / UDP-paketti
-BRIGHT          = 1            # kirkkaustavu jokaiselle pikselille
+BRIGHT          = 14            # kirkkaustavu jokaiselle pikselille
 TIMEOUT_S       = 0.010          # vastausodotus sekunteina
 FRAME_DELAY_S   = 0        # 30 ms = ~33 FPS
 
@@ -68,12 +68,12 @@ for y in range(h):
         sock.sendto(packet, (ESP_IP, ESP_PORT))
         packet.clear()
 
-        try:
-            data, _ = sock.recvfrom(32)
-            if data != b"ACK":
-                print("Odottamaton vastaus:", data)
-        except socket.timeout:
-            print("Ei vastausta", TIMEOUT_S, "s kuluessa")
+        # try:
+        #     data, _ = sock.recvfrom(32)
+        #     if data != b"ACK":
+        #         print("Odottamaton vastaus:", data)
+        # except socket.timeout:
+        #     print("Ei vastausta", TIMEOUT_S, "s kuluessa")
 
 # jos viimeinen jää vajaaksi
 if packet:
