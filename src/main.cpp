@@ -13,8 +13,8 @@
 #include "freertos/task.h"
 AsyncUDP audp;
 
-const char* ssid = "aaaaaa";
-const char* password = "aaaaaaa";
+const char* ssid = "accesspoint";
+const char* password = "12345678";
 
 void otaTask(void*);
 void tasks(void*);
@@ -28,17 +28,14 @@ void setup() {
 
     setCpuFrequencyMhz(240);      // 80, 160 tai 240 (jos tukee)
 
- 
-    WiFi.begin(ssid, password);
-    esp_wifi_set_protocol(WIFI_IF_STA,
-                      WIFI_PROTOCOL_11B |
-                      WIFI_PROTOCOL_11G |
-                      WIFI_PROTOCOL_11N);   // 802.11n 72 Mbit
+    WiFi.mode(WIFI_AP);
+    WiFi.softAP(ssid, password);
+    esp_wifi_set_protocol(WIFI_IF_AP,
+                          WIFI_PROTOCOL_11B |
+                          WIFI_PROTOCOL_11G |
+                          WIFI_PROTOCOL_11N);
 
-    if (WiFi.status() != WL_CONNECTED) {
-      delay(500);
-      Serial.print(".");
-    }
+
     WiFi.setSleep(false);
 
       // OTA-määritykset
