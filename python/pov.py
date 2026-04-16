@@ -59,7 +59,7 @@ ESP_IP   = "192.168.4.1"
 ESP_PORT = 22222
 
 ROWS_PER_PACKET = 2            # montako kuvansiivua / UDP-paketti
-BRIGHT          = 8           # kirkkaustavu jokaiselle pikselille
+BRIGHT          = 5           # kirkkaustavu jokaiselle pikselille
 TIMEOUT_S       = 0.010          # vastausodotus sekunteina
 FRAME_DELAY_S   = 0.08      # 30 ms = ~33 FPS
 
