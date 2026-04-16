@@ -61,7 +61,7 @@ ESP_PORT = 22222
 ROWS_PER_PACKET = 2            # montako kuvansiivua / UDP-paketti
 BRIGHT          = 8           # kirkkaustavu jokaiselle pikselille
 TIMEOUT_S       = 0.010          # vastausodotus sekunteina
-FRAME_DELAY_S   = 0.1      # 30 ms = ~33 FPS
+FRAME_DELAY_S   = 0.08      # 30 ms = ~33 FPS
 
 # --- UDP-socket ------------------------------------------------------------
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -90,7 +90,7 @@ elif sys.argv[1]=="--delete":
 elif len(sys.argv) > 2 and sys.argv[2]=="--video":
     
     cam = cv2.VideoCapture(sys.argv[1]) #käy video läpi kuva kuvalta ja lähetä ne palloon
-    TARGET_FPS = 20  
+    TARGET_FPS = 33 
     video_fps = cam.get(cv2.CAP_PROP_FPS)
 
     frame_skip = max(1, int(video_fps / TARGET_FPS))
